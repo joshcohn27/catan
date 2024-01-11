@@ -1,7 +1,5 @@
 from hex import *
 
-
-
 def main():
     create_board()
     # print_board()
