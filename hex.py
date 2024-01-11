@@ -6,6 +6,16 @@ res = []
 board = []
 SIZE = 19
 
+
+resource_colors = {
+    "wo": "green",
+    "br": "#FFC0CB",
+    "wh": "yellow",
+    "sh": "lightgreen",
+    "mo": "gray",
+    "de": "white"
+}
+
 class Hex:
     
     __slots__ = ['resource', 'number']
@@ -19,6 +29,9 @@ class Hex:
     
     def get_num(self):
         return self.number
+    
+    def get_res(self):
+        return self.resource
 
 def set_up():
     with open('numbers.txt', 'r') as file:
@@ -61,18 +74,22 @@ def print_board():
 #############################################################
 
 def draw_hexagon(side_length, item):
+    turtle.begin_fill()
+    turtle.fillcolor(resource_colors.get(item.resource, "white"))  # Get color from dictionary, default to white
     turtle.left(30)
     for _ in range(6):
         turtle.pendown()
         turtle.forward(side_length)
         turtle.left(60)
         turtle.penup()
+    turtle.end_fill()
     turtle.right(30)
     turtle.left(90)
     turtle.forward(side_length * .75)
     turtle.write(item, align="center", font=("Arial", 16, "normal"))
     turtle.backward(side_length * .75)
     turtle.right(90)
+
     
     
 
@@ -100,6 +117,7 @@ def new_row_op(hex_size, start):
     return turtle.position()
 
 def turtle_board():
+    turtle.bgcolor("lightblue")
     hex_size = 50  # Adjust the size as needed
     start = -2 * hex_size, 0
     turtle.speed(0)
