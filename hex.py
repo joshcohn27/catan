@@ -1,6 +1,8 @@
 import random
 import turtle
 
+from dice import *
+
 num = []
 res = []
 board = []

@@ -31,7 +31,6 @@ def draw_die(value, x, y):
         turtle.dot(8, "black")
 
 def display_dice_roll():
-    turtle.clear()
     turtle.speed(0)
 
     die1 = roll_die()
@@ -40,17 +39,18 @@ def display_dice_roll():
     draw_die(die1, -200, 200)
     draw_die(die2, -125, 200)
     
-    turtle.color("black")
-    turtle.goto(0, 0)
-    turtle.write(die1+die2, align="center", font=("Arial", 16, "normal"))
-    turtle.penup()
+    # turtle.color("black")
+    # turtle.goto(0, 200)
+    # turtle.write(die1+die2, align="center", font=("Arial", 16, "normal"))
+    # turtle.penup()
     
     turtle.hideturtle()
 
 
-while True:
-    display_dice_roll()
-    inp = turtle.textinput("Next Roll", "Press enter to roll again, or type Q to quit:")
-    if inp and inp.lower() == 'q':
-        turtle.bye()
-        break
+def play():
+    while True:
+        display_dice_roll()
+        inp = turtle.textinput("Next Roll", "Press enter to roll again, or type Q to quit:")
+        if inp and inp.lower() == 'q':
+            turtle.bye()
+            break
