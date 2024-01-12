@@ -1,8 +1,55 @@
 import turtle
 import random
 
+
 def roll_die():
     return random.randint(1, 6)
+
+def dot(value, x, y):
+    dot_positions = []
+    if value == 1:
+        dot_positions = [
+            (x + 25, y - 25)
+        ]
+    elif value == 2:
+        dot_positions = [
+            (x + 12.5, y - 37.5),
+            (x + 37.5, y - 12.5)
+        ]
+    elif value == 3:
+        dot_positions = [
+            (x + 25, y - 25),
+            (x + 12.5, y - 37.5),
+            (x + 37.5, y - 12.5)
+        ]
+    elif value == 4:
+        dot_positions = [
+            (x + 12.5, y - 37.5),
+            (x + 12.5, y - 12.5),
+            (x + 37.5, y - 12.5),
+            (x + 37.5, y - 37.5)
+        ]
+    elif value == 5:
+        dot_positions = [
+            (x + 12.5, y - 37.5),
+            (x + 12.5, y - 12.5),
+            (x + 37.5, y - 12.5),
+            (x + 37.5, y - 37.5),
+            (x + 25, y - 25)
+        ]
+    elif value == 6:
+        dot_positions = [
+            (x + 12.5, y - 37.5),
+            (x + 12.5, y - 12.5),
+            (x + 37.5, y - 12.5),
+            (x + 37.5, y - 37.5),
+            (x + 12.5, y - 25),
+            (x + 37.5, y - 25),
+        ]
+    else:
+        raise ValueError
+        
+    return dot_positions        
 
 def draw_die(value, x, y):
     turtle.penup()
@@ -17,17 +64,9 @@ def draw_die(value, x, y):
     turtle.end_fill()
 
     turtle.penup()
-    dot_positions = [
-        (x + 15, y - 35),  # Top-left
-        (x + 35, y - 35),  # Top-right
-        (x + 15, y - 15),  # Bottom-left
-        (x + 35, y - 15),  # Bottom-right
-        (x + 25, y - 25),  # Center
-        (x + 25, y - 45),  # Top-center
-    ]
-
-    for i in range(value):
-        turtle.goto(dot_positions[i])
+    dot_positions = dot(value, x, y)
+    for d in dot_positions:
+        turtle.goto(d)
         turtle.dot(8, "black")
 
 def display_dice_roll():
@@ -38,11 +77,6 @@ def display_dice_roll():
 
     draw_die(die1, -200, 200)
     draw_die(die2, -125, 200)
-    
-    # turtle.color("black")
-    # turtle.goto(0, 200)
-    # turtle.write(die1+die2, align="center", font=("Arial", 16, "normal"))
-    # turtle.penup()
     
     turtle.hideturtle()
 
